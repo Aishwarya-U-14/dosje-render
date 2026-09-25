@@ -3,6 +3,13 @@ const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
 
+// Render deployment: automatically create the demo database/accounts on a fresh
+// instance. The local development workflow can still use `npm run seed`.
+const db = require('./db');
+if (!db.load().users || db.load().users.length === 0) {
+  require('./seed');
+}
+
 const authRoutes = require('./routes/auth');
 const instituteRoutes = require('./routes/institutes');
 const inspectionRoutes = require('./routes/inspections');
