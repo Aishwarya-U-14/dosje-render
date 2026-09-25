@@ -1,0 +1,6 @@
+{
+  "type":"FeatureCollection",
+  "features":[
+    {"type":"Feature","properties":{"name":"Demo Monitoring Zone - Central India","risk":"medium"},"geometry":{"type":"Polygon","coordinates":[[[74.8,21.8],[79.0,21.8],[79.0,24.2],[74.8,24.2],[74.8,21.8]]]}}
+  ]
+}

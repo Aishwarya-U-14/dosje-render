@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: dosje-monitoring
+    env: node
+    plan: free
+    buildCommand: cd server && npm install
+    startCommand: node server/server.js
+    healthCheckPath: /api/health
+    envVars:
+      - key: JWT_SECRET
+        generateValue: true
+      - key: PUBLIC_BASE_URL
+        sync: false
+    # Uploaded files and server/data/db.json are written to local disk.
+    # Render's free web-service disk is EPHEMERAL: it resets on every
+    # deploy and restart, so registered users / inspections / uploads
+    # will be wiped each time. To keep that data, upgrade the service
+    # to a paid instance type and uncomment the block below, which mounts
+    # a persistent disk under server/data and server/uploads.
+    # disk:
+    #   name: dosje-data
+    #   mountPath: /opt/render/project/src/server/data
+    #   sizeGB: 1
